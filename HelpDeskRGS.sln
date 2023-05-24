@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinimalWebApiHelpDesk", "..\MinimalWebApiHelpDesk\MinimalWebApiHelpDesk.csproj", "{B2E2CEE8-9A5D-42C2-ADBA-85F80A0FE42E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelpDeskClientUser", "HelpDeskClientUser\HelpDeskClientUser.csproj", "{CFF0739C-BE72-47FF-BBAC-8EE2AA28AEB4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2E2CEE8-9A5D-42C2-ADBA-85F80A0FE42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E2CEE8-9A5D-42C2-ADBA-85F80A0FE42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E2CEE8-9A5D-42C2-ADBA-85F80A0FE42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E2CEE8-9A5D-42C2-ADBA-85F80A0FE42E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFF0739C-BE72-47FF-BBAC-8EE2AA28AEB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF0739C-BE72-47FF-BBAC-8EE2AA28AEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF0739C-BE72-47FF-BBAC-8EE2AA28AEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF0739C-BE72-47FF-BBAC-8EE2AA28AEB4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA15DA59-4029-49CE-BBF6-BC5025BB5835}
+	EndGlobalSection
+EndGlobal
