@@ -1,3 +1,4 @@
+using HelpDeskClientUser.Forms;
 using System.Text;
 
 namespace HelpDeskClientUser
@@ -9,9 +10,45 @@ namespace HelpDeskClientUser
             InitializeComponent();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        
+
+        
+
+        private void btn_log_in_Click(object sender, EventArgs e)
         {
-            await HttpClientMain.Main();
+            
+
+            switch (cb_typeUser.SelectedIndex)
+            {
+                case 0:
+                    if (tb_login.Text == "admin" && tb_password.Text == "admin")
+                    {
+                        this.Visible= false;
+                        AdminForm adminForm = new AdminForm();
+                        adminForm.ShowDialog();
+                        this.Visible = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неверные логин и/или пароль");
+                        return;
+                    }
+                    break;
+
+                case 1:
+
+
+                    
+                    break; 
+
+                case 2:
+
+                    break;
+
+                default:
+                    break;
+
+            }
         }
     }
 

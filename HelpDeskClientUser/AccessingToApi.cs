@@ -1,12 +1,15 @@
 ﻿
-using ClientAppHelpDesk.DataBase.Models;
-using Newtonsoft.Json;
+using ClientAppHelpDesk.Models;
+using HelpDeskClientUser.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace HelpDeskClientUser
@@ -15,6 +18,189 @@ namespace HelpDeskClientUser
     {
         public static string address = "https://localhost:7242";
 
+        HttpClient httpClient1 = new HttpClient();
+
+        
+        #region get
+
+        /// <summary>
+        /// Получить всех специалистов
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<List<Specialists>> GetAllSpecialists()
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync($"{address}/api/specialists/get");
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+
+                    try
+                    {
+                        string jsonStringUnescaped = System.Text.RegularExpressions.Regex.Unescape(result.Substring(1, result.Length - 2));
+
+                        List<Specialists> specialists = JsonSerializer.Deserialize<List<Specialists>>(jsonStringUnescaped);
+
+                        //List<Specialists> specialists = JsonSerializer.Deserialize<List<Specialists>>(Regex.Unescape(result));
+                        return specialists;
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+                    return JsonSerializer.Deserialize<List<Specialists>>(result); ;
+                }
+                else
+                {
+                    throw new Exception($"Status code: {response.StatusCode}");
+                }
+// 
+            }
+        }
+
+
+        #endregion get
+
+        #region post
+
+        /// <summary>
+        /// Авторизация пользователя
+        /// </summary>
+        /// <returns>object Clients</returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<Clients> SignInClientAsync(string log, string pass)
+        {
+            using (var client = new HttpClient())
+            {
+                var _loginModel = new LoginModel
+                {
+                    Login = log,
+                    Password = pass
+                };
+
+                // объект в json 
+                var content = new StringContent(JsonSerializer.Serialize(_loginModel), Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync($"{address}/api/client/signin", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    return JsonSerializer.Deserialize<Clients>(result);
+                }
+                else
+                {
+                    throw new Exception($"Status code: {response.StatusCode}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Авторизация специалиста.
+        /// </summary>
+        /// <param name="log">логин</param>
+        /// <param name="pass">пароль</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<Specialists> SignInSpecialistAsync(string log, string pass)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var _loginModel = new LoginModel
+                {
+                    Login = log,
+                    Password = pass
+                };
+
+                var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(_loginModel), System.Text.Encoding.UTF8, "application/json");
+
+                var responce = await httpClient.PostAsync($"{address}/api/specialist/signin", content);
+                if (responce.IsSuccessStatusCode)
+                {
+                    var result = await responce.Content.ReadAsStringAsync();
+                    return JsonSerializer.Deserialize<Specialists>(result);
+                }
+                else
+                {
+                    throw new Exception($"Код ошибки: {responce.StatusCode},\n Сообщение: {responce.RequestMessage}");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Создание специалиста.
+        /// </summary>
+        /// <param name="specialist"></param>
+        /// <returns></returns>
+        public static async Task<bool> AddNewSpecialistAsync(Specialists specialist)
+        {
+            using(var httpClient = new HttpClient())
+            {
+                var content = new StringContent(JsonSerializer.Serialize(specialist), Encoding.UTF8, "application/json");
+                
+                var response = await httpClient.PostAsync($"{address}/api/specialist/create", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new Exception($"{response.StatusCode}, {response.RequestMessage}");
+                }
+
+            }
+        }
+
+        #endregion post
+
+        #region put
+
+        #endregion put
+
+
+        #region delete
+
+        /// <summary>
+        /// Удаление клиента
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
+        public static async Task<bool> DeleteClientAsync(Clients client)
+        {
+            using(var httpClient = new HttpClient())
+            {
+                var content = new StringContent(JsonSerializer.Serialize<Clients>(client), Encoding.UTF8, "application.json");
+                var responce = await httpClient.PutAsync($"{address}/api/client/delete", content);
+                if (responce.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else throw new Exception($"{responce.StatusCode}, {responce.RequestMessage}");
+            }
+        }
+
+        /// <summary>
+        /// Удаление специалиста.
+        /// </summary>
+        /// <param name="specialist"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<bool> DeleteSpecialistAsync(int id)
+        {
+            using(var httpClient = new HttpClient())
+            {
+                
+                var responce = await httpClient.PutAsJsonAsync($"{address}/api/specialist/delete?id={id}", id);
+                if (responce.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else throw new Exception( $"Код ошибки: {responce.StatusCode}\n Сообщение: {responce.RequestMessage}");
+            }
+
+        }
+
+        #endregion delete
+
         public static async Task<List<Clients>> GetClientsAsync()
         {
             var httpClient = new HttpClient();
@@ -22,55 +208,14 @@ namespace HelpDeskClientUser
             if (responce.IsSuccessStatusCode)
             {
                 var content = await responce.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<List<Clients>>(content);
+                return JsonSerializer.Deserialize<List<Clients>>(content);
             }
             else
             {
-                return null;
+                throw new Exception( $"Status code: {responce.StatusCode},\n Request message: {responce.RequestMessage}");
             }
         }
         
-        public static async Task NewUsers()
-        {
-            var client = new HttpClient();
-            var data = new StringContent("{\"name\":\"John\", \"age\":30}", Encoding.UTF8, "application/json");
-            var response = await client.PostAsync($"{address}/api/users", data);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(content);
-            }
-            else
-            {
-                Console.WriteLine("Request failed with status code: " + response.StatusCode);
-            }
-            client.Dispose();
-
-        }
-        /*
-        public static async Task NewUser()
-        {
-            var client = new HttpClient();
-            var user = new { Name = "Tom", Age = 37 };
-
-            var json = Newtonsoft.Json.JsonSerializer.Serialize(user);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync("https://localhost:5001/api/users", content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                json = await response.Content.ReadAsStringAsync();
-                var newUser = Newtonsoft.Json.JsonSerializer.Deserialize<Person>(json);
-                Console.WriteLine($"New user created: {newUser.Id} - {newUser.Name} ({newUser.Age})");
-            }
-            else
-            {
-                Console.WriteLine("Request failed with status code: " + response.StatusCode);
-            }
-        }
-        */
     }
 
     public class Person

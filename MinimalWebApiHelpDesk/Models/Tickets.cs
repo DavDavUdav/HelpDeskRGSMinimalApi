@@ -1,4 +1,4 @@
-﻿using ClientAppHelpDesk.Models;
+﻿using MinimalWebApiHelpDesk.Models;
 using ServerAppHelpDesk.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientAppHelpDesk.Models
+namespace MinimalWebApiHelpDesk.Models
 {
     public class Tickets : Entity
     {
-        //public int Id { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// Заголовок заявки.
         /// </summary>
@@ -46,11 +46,11 @@ namespace ClientAppHelpDesk.Models
         public int AssignedTo { get; set; }
 
         /// <summary>
-        /// ID автора (клиента).
+        /// клиенты.
         /// </summary>
         public Clients Client { get; set; }
         /// <summary>
-        /// ID ответственного сотрудника.
+        /// сотрудники.
         /// </summary>
         public Specialists AssignedSpecialist { get; set; }
         /// <summary>

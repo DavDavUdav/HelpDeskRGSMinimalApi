@@ -1,4 +1,4 @@
-﻿using ClientAppHelpDesk.Models;
+﻿using MinimalWebApiHelpDesk.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientAppHelpDesk.Models
+namespace MinimalWebApiHelpDesk.Models
 {
     public class Clients : Entity
     {

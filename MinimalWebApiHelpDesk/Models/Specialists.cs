@@ -1,4 +1,4 @@
-﻿using ClientAppHelpDesk.Models;
+﻿using MinimalWebApiHelpDesk.Models;
 using ServerAppHelpDesk.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientAppHelpDesk.Models
+namespace MinimalWebApiHelpDesk.Models
 {
     public class Specialists : Entity
     {
@@ -34,7 +34,7 @@ namespace ClientAppHelpDesk.Models
         /// </summary>
         public string Email { get; set; }
 
-        //[IgnoreDataMember]
-        //public ICollection<Tickets>? AssignedTickets { get; set; }
+        [IgnoreDataMember]
+        public ICollection<Tickets>? AssignedTickets { get; set; }
     }
 }
