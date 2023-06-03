@@ -10,7 +10,6 @@ namespace MinimalWebApiHelpDesk.Models
 {
     public class Tickets : Entity
     {
-        public int Id { get; set; }
         /// <summary>
         /// Заголовок заявки.
         /// </summary>
@@ -46,13 +45,13 @@ namespace MinimalWebApiHelpDesk.Models
         public int AssignedTo { get; set; }
 
         /// <summary>
-        /// клиенты.
+        /// Клиент.
         /// </summary>
-        public Clients Client { get; set; }
+        public Users Client { get; set; }
         /// <summary>
-        /// сотрудники.
+        /// Сотрудник.
         /// </summary>
-        public Specialists AssignedSpecialist { get; set; }
+        public Users Specialist { get; set; }
         /// <summary>
         /// Тип заявки.
         /// </summary>

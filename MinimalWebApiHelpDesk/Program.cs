@@ -18,6 +18,10 @@ app.UseStaticFiles();
 DataStore _dataStore = new DataStore();
 DataStoreDbContext _dataStoreDbContext = new DataStoreDbContext();
 
+
+
+ 
+  
 // GET: получить подробную информацию о ресурсе.
 #region get
 
