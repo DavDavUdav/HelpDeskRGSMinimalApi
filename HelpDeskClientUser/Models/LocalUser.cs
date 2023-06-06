@@ -1,40 +1,41 @@
 ﻿using ClientAppHelpDesk.Models;
-using ServerAppHelpDesk.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ClientAppHelpDesk.Models
 {
-    public class Specialists : Entity
+    public class LocalUser : Entity
     {
-        //public int Id { get; set; }
         /// <summary>
-        /// Имя специалиста.
+        /// Имя пользователя.
         /// </summary>
         public string FirstName { get; set; }
         /// <summary>
-        /// Фамилия специалиста.
+        /// Фамилия пользователя.
         /// </summary>
         public string LastName { get; set; }
         /// <summary>
-        /// Логин специалиста.
+        /// Тип пользователя(специалист или клиент).
+        /// </summary>
+        public string TypeUser { get; set; }
+        /// <summary>
+        /// Логин.
         /// </summary>
         public string Login { get; set; }
         /// <summary>
-        /// Пароль специалиста.
+        /// Пароль.
         /// </summary>
         public string Password { get; set; }
         /// <summary>
-        /// Адрес эл. почты специалиста
+        /// Адрес эл. почты.
         /// </summary>
         public string Email { get; set; }
-
-        //[IgnoreDataMember]
-        //public ICollection<Tickets>? AssignedTickets { get; set; }
+        /// <summary>
+        /// Номер телефона.
+        /// </summary>
+        public string Phone { get; set; }
     }
 }

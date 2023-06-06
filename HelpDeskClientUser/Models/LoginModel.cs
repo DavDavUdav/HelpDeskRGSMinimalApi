@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HelpDeskClientUser.Models
+namespace ClientWebApiHelpDesk.Models
 {
     public class LoginModel
     {

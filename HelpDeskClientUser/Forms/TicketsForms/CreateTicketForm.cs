@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HelpDeskClientUser.Forms.TicketsForms
 {
     public partial class CreateTicketForm : Form
     {
-        
+        public string _tticket;
+        public Users _client;
         
         public CreateTicketForm()
         {
@@ -29,19 +31,36 @@ namespace HelpDeskClientUser.Forms.TicketsForms
             tb_description.ForeColor = Color.Gray;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var ticket = new Tickets()
-            {
-                Title = tb_title.Text
-                //TypeTicket =  ,
-
-            };
-        }
+        
 
         private void tb_description_Leave(object sender, EventArgs e)
         {
-            
+            tb_description.Text = "Просьба указать информацию максимально подробно, если проблемма с программой то указать что за программа и на каком этапе возникла проблемма, если заказ картриджей то просьба указать модель принтера(или картриджа), а так же количество которое нужно";
+            tb_description.ForeColor = Color.Gray;
+        }
+
+        private void tb_description_Enter(object sender, EventArgs e)
+        {
+            tb_description.Text = null;
+            tb_description.ForeColor = Color.Black;
+        }
+
+        private async void btn_send_Click(object sender, EventArgs e)
+        {
+            var ticket = new Tickets()
+            {
+                Title = tb_title.Text,
+                TypeTicket = _tticket,
+                ClientId = _client.Id,
+                CreateDate = DateTime.Today.Date,
+                Priority = cb_prioritet.SelectedText,
+                LastUpdateDate = DateTime.Today,
+                Status = "Ожидание",
+                Description = tb_description.Text
+            };
+
+            var responce = await AccessingToApi.CreateTicketAsync(ticket);
+            this.Close();
         }
     }
 }

@@ -15,6 +15,10 @@ namespace MinimalWebApiHelpDesk.Models
         /// </summary>
         public string Title { get; set; }
         /// <summary>
+        /// Тип заявки.
+        /// </summary>
+        public string TypeTicket { get; set; }
+        /// <summary>
         /// Описание заявки.
         /// </summary>
         public string Description { get; set; }
@@ -55,6 +59,6 @@ namespace MinimalWebApiHelpDesk.Models
         /// <summary>
         /// Тип заявки.
         /// </summary>
-        public TypeTicket TypeTicket { get; set; }
+        public TypeTicket typeTick { get; set; }
     }
 }

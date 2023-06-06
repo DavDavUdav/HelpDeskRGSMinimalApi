@@ -1,5 +1,4 @@
 ﻿using ClientAppHelpDesk.Models;
-using ServerAppHelpDesk.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +9,14 @@ namespace ClientAppHelpDesk.Models
 {
     public class Tickets : Entity
     {
-        //public int Id { get; set; }
         /// <summary>
         /// Заголовок заявки.
         /// </summary>
         public string Title { get; set; }
+        /// <summary>
+        /// Тип заявки.
+        /// </summary>
+        public string TypeTicket { get; set; }
         /// <summary>
         /// Описание заявки.
         /// </summary>
@@ -46,16 +48,16 @@ namespace ClientAppHelpDesk.Models
         public int AssignedTo { get; set; }
 
         /// <summary>
-        /// ID автора (клиента).
+        /// Клиент.
         /// </summary>
-        public Clients Client { get; set; }
+        public Users Client { get; set; }
         /// <summary>
-        /// ID ответственного сотрудника.
+        /// Сотрудник.
         /// </summary>
-        public Specialists AssignedSpecialist { get; set; }
+        public Users Specialist { get; set; }
         /// <summary>
         /// Тип заявки.
         /// </summary>
-        public TypeTicket TypeTicket { get; set; }
+        public TypeTicket typeTick { get; set; }
     }
 }

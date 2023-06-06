@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tb_phoneNumber_spec = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.tb_mail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tb_password = new System.Windows.Forms.TextBox();
@@ -41,25 +43,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_addSpecialist = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.tb_phoneNumber_client = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tb_mail_client = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.tb_pass_client = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.tb_lastname_client = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.tb_login_client = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.tb_firstname_client = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.tb_add_client = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_deleteSpecialist = new System.Windows.Forms.Button();
             this.dgv_specialists = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgv_clients = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -74,7 +76,7 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_specialists)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_clients)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -84,6 +86,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tb_phoneNumber_spec);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.tb_mail);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.tb_password);
@@ -95,24 +99,40 @@
             this.groupBox1.Controls.Add(this.tb_firstname);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btn_addSpecialist);
-            this.groupBox1.Location = new System.Drawing.Point(8, 6);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(429, 122);
+            this.groupBox1.Size = new System.Drawing.Size(431, 122);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Добавление нового специалиста";
             // 
+            // tb_phoneNumber_spec
+            // 
+            this.tb_phoneNumber_spec.Location = new System.Drawing.Point(324, 38);
+            this.tb_phoneNumber_spec.Name = "tb_phoneNumber_spec";
+            this.tb_phoneNumber_spec.Size = new System.Drawing.Size(100, 23);
+            this.tb_phoneNumber_spec.TabIndex = 25;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(323, 20);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(101, 15);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "Номер телефона";
+            // 
             // tb_mail
             // 
-            this.tb_mail.Location = new System.Drawing.Point(282, 38);
+            this.tb_mail.Location = new System.Drawing.Point(218, 38);
             this.tb_mail.Name = "tb_mail";
-            this.tb_mail.Size = new System.Drawing.Size(141, 23);
+            this.tb_mail.Size = new System.Drawing.Size(100, 23);
             this.tb_mail.TabIndex = 10;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(282, 19);
+            this.label5.Location = new System.Drawing.Point(218, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 15);
             this.label5.TabIndex = 9;
@@ -120,15 +140,15 @@
             // 
             // tb_password
             // 
-            this.tb_password.Location = new System.Drawing.Point(131, 89);
+            this.tb_password.Location = new System.Drawing.Point(112, 89);
             this.tb_password.Name = "tb_password";
-            this.tb_password.Size = new System.Drawing.Size(145, 23);
+            this.tb_password.Size = new System.Drawing.Size(100, 23);
             this.tb_password.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(131, 71);
+            this.label4.Location = new System.Drawing.Point(112, 71);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 15);
             this.label4.TabIndex = 7;
@@ -137,15 +157,15 @@
             // 
             // tb_lastname
             // 
-            this.tb_lastname.Location = new System.Drawing.Point(131, 38);
+            this.tb_lastname.Location = new System.Drawing.Point(112, 38);
             this.tb_lastname.Name = "tb_lastname";
-            this.tb_lastname.Size = new System.Drawing.Size(145, 23);
+            this.tb_lastname.Size = new System.Drawing.Size(100, 23);
             this.tb_lastname.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(131, 20);
+            this.label3.Location = new System.Drawing.Point(112, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 15);
             this.label3.TabIndex = 5;
@@ -154,15 +174,15 @@
             // 
             // tb_login
             // 
-            this.tb_login.Location = new System.Drawing.Point(10, 89);
+            this.tb_login.Location = new System.Drawing.Point(6, 89);
             this.tb_login.Name = "tb_login";
-            this.tb_login.Size = new System.Drawing.Size(115, 23);
+            this.tb_login.Size = new System.Drawing.Size(100, 23);
             this.tb_login.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 71);
+            this.label2.Location = new System.Drawing.Point(6, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 15);
             this.label2.TabIndex = 3;
@@ -170,15 +190,15 @@
             // 
             // tb_firstname
             // 
-            this.tb_firstname.Location = new System.Drawing.Point(10, 38);
+            this.tb_firstname.Location = new System.Drawing.Point(6, 38);
             this.tb_firstname.Name = "tb_firstname";
-            this.tb_firstname.Size = new System.Drawing.Size(115, 23);
+            this.tb_firstname.Size = new System.Drawing.Size(100, 23);
             this.tb_firstname.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 20);
+            this.label1.Location = new System.Drawing.Point(6, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 15);
             this.label1.TabIndex = 1;
@@ -186,9 +206,9 @@
             // 
             // btn_addSpecialist
             // 
-            this.btn_addSpecialist.Location = new System.Drawing.Point(282, 71);
+            this.btn_addSpecialist.Location = new System.Drawing.Point(218, 71);
             this.btn_addSpecialist.Name = "btn_addSpecialist";
-            this.btn_addSpecialist.Size = new System.Drawing.Size(141, 41);
+            this.btn_addSpecialist.Size = new System.Drawing.Size(205, 41);
             this.btn_addSpecialist.TabIndex = 0;
             this.btn_addSpecialist.Text = "Добавить";
             this.btn_addSpecialist.UseVisualStyleBackColor = true;
@@ -196,19 +216,19 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox11);
+            this.groupBox2.Controls.Add(this.tb_phoneNumber_client);
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.tb_mail_client);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox7);
+            this.groupBox2.Controls.Add(this.tb_pass_client);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBox8);
+            this.groupBox2.Controls.Add(this.tb_lastname_client);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.textBox9);
+            this.groupBox2.Controls.Add(this.tb_login_client);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.textBox10);
+            this.groupBox2.Controls.Add(this.tb_firstname_client);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.tb_add_client);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(432, 123);
@@ -216,12 +236,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Добавление нового клиента";
             // 
-            // textBox11
+            // tb_phoneNumber_client
             // 
-            this.textBox11.Location = new System.Drawing.Point(328, 37);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(100, 23);
-            this.textBox11.TabIndex = 23;
+            this.tb_phoneNumber_client.Location = new System.Drawing.Point(328, 37);
+            this.tb_phoneNumber_client.Name = "tb_phoneNumber_client";
+            this.tb_phoneNumber_client.Size = new System.Drawing.Size(100, 23);
+            this.tb_phoneNumber_client.TabIndex = 23;
             // 
             // label11
             // 
@@ -232,12 +252,12 @@
             this.label11.TabIndex = 22;
             this.label11.Text = "Номер телефона";
             // 
-            // textBox6
+            // tb_mail_client
             // 
-            this.textBox6.Location = new System.Drawing.Point(222, 37);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 23);
-            this.textBox6.TabIndex = 21;
+            this.tb_mail_client.Location = new System.Drawing.Point(222, 37);
+            this.tb_mail_client.Name = "tb_mail_client";
+            this.tb_mail_client.Size = new System.Drawing.Size(100, 23);
+            this.tb_mail_client.TabIndex = 21;
             // 
             // label6
             // 
@@ -248,12 +268,12 @@
             this.label6.TabIndex = 20;
             this.label6.Text = "Почта";
             // 
-            // textBox7
+            // tb_pass_client
             // 
-            this.textBox7.Location = new System.Drawing.Point(116, 88);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 23);
-            this.textBox7.TabIndex = 19;
+            this.tb_pass_client.Location = new System.Drawing.Point(116, 88);
+            this.tb_pass_client.Name = "tb_pass_client";
+            this.tb_pass_client.Size = new System.Drawing.Size(100, 23);
+            this.tb_pass_client.TabIndex = 19;
             // 
             // label7
             // 
@@ -264,12 +284,12 @@
             this.label7.TabIndex = 18;
             this.label7.Text = "Пароль";
             // 
-            // textBox8
+            // tb_lastname_client
             // 
-            this.textBox8.Location = new System.Drawing.Point(116, 37);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 23);
-            this.textBox8.TabIndex = 17;
+            this.tb_lastname_client.Location = new System.Drawing.Point(116, 37);
+            this.tb_lastname_client.Name = "tb_lastname_client";
+            this.tb_lastname_client.Size = new System.Drawing.Size(100, 23);
+            this.tb_lastname_client.TabIndex = 17;
             // 
             // label8
             // 
@@ -280,12 +300,12 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "Фамилия";
             // 
-            // textBox9
+            // tb_login_client
             // 
-            this.textBox9.Location = new System.Drawing.Point(10, 88);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 23);
-            this.textBox9.TabIndex = 15;
+            this.tb_login_client.Location = new System.Drawing.Point(10, 88);
+            this.tb_login_client.Name = "tb_login_client";
+            this.tb_login_client.Size = new System.Drawing.Size(100, 23);
+            this.tb_login_client.TabIndex = 15;
             // 
             // label9
             // 
@@ -296,12 +316,12 @@
             this.label9.TabIndex = 14;
             this.label9.Text = "Логин";
             // 
-            // textBox10
+            // tb_firstname_client
             // 
-            this.textBox10.Location = new System.Drawing.Point(10, 37);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 23);
-            this.textBox10.TabIndex = 13;
+            this.tb_firstname_client.Location = new System.Drawing.Point(10, 37);
+            this.tb_firstname_client.Name = "tb_firstname_client";
+            this.tb_firstname_client.Size = new System.Drawing.Size(100, 23);
+            this.tb_firstname_client.TabIndex = 13;
             // 
             // label10
             // 
@@ -312,14 +332,15 @@
             this.label10.TabIndex = 12;
             this.label10.Text = "Имя";
             // 
-            // button2
+            // tb_add_client
             // 
-            this.button2.Location = new System.Drawing.Point(222, 70);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(206, 41);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Добавить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.tb_add_client.Location = new System.Drawing.Point(222, 70);
+            this.tb_add_client.Name = "tb_add_client";
+            this.tb_add_client.Size = new System.Drawing.Size(206, 41);
+            this.tb_add_client.TabIndex = 11;
+            this.tb_add_client.Text = "Добавить";
+            this.tb_add_client.UseVisualStyleBackColor = true;
+            this.tb_add_client.Click += new System.EventHandler(this.tb_add_client_Click);
             // 
             // groupBox3
             // 
@@ -354,7 +375,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.button4);
-            this.groupBox4.Controls.Add(this.dataGridView2);
+            this.groupBox4.Controls.Add(this.dgv_clients);
             this.groupBox4.Location = new System.Drawing.Point(6, 135);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(437, 280);
@@ -364,21 +385,21 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(10, 248);
+            this.button4.Location = new System.Drawing.Point(6, 248);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(418, 26);
+            this.button4.Size = new System.Drawing.Size(423, 26);
             this.button4.TabIndex = 13;
             this.button4.Text = "Удалить";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dgv_clients
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(10, 22);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(418, 220);
-            this.dataGridView2.TabIndex = 12;
+            this.dgv_clients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_clients.Location = new System.Drawing.Point(6, 22);
+            this.dgv_clients.Name = "dgv_clients";
+            this.dgv_clients.RowTemplate.Height = 25;
+            this.dgv_clients.Size = new System.Drawing.Size(422, 220);
+            this.dgv_clients.TabIndex = 12;
             // 
             // tabControl1
             // 
@@ -389,7 +410,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(454, 459);
+            this.tabControl1.Size = new System.Drawing.Size(454, 450);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -399,7 +420,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(446, 431);
+            this.tabPage1.Size = new System.Drawing.Size(446, 422);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Специалисты";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -411,7 +432,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(446, 431);
+            this.tabPage2.Size = new System.Drawing.Size(446, 422);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Клиенты";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -422,7 +443,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(446, 431);
+            this.tabPage3.Size = new System.Drawing.Size(446, 422);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Заявки";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -473,13 +494,16 @@
             this.btn_addNewTypeTicket.TabIndex = 0;
             this.btn_addNewTypeTicket.Text = "Добавить";
             this.btn_addNewTypeTicket.UseVisualStyleBackColor = true;
+            this.btn_addNewTypeTicket.Click += new System.EventHandler(this.btn_addNewTypeTicket_Click);
             // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 459);
+            this.ClientSize = new System.Drawing.Size(454, 450);
             this.Controls.Add(this.tabControl1);
+            this.MaximumSize = new System.Drawing.Size(470, 489);
+            this.MinimumSize = new System.Drawing.Size(470, 489);
             this.Name = "AdminForm";
             this.Text = "Админ-панель";
             this.groupBox1.ResumeLayout(false);
@@ -489,7 +513,7 @@
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_specialists)).EndInit();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_clients)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -517,23 +541,23 @@
         private TextBox tb_firstname;
         private Label label1;
         private Button btn_addSpecialist;
-        private TextBox textBox11;
+        private TextBox tb_phoneNumber_client;
         private Label label11;
-        private TextBox textBox6;
+        private TextBox tb_mail_client;
         private Label label6;
-        private TextBox textBox7;
+        private TextBox tb_pass_client;
         private Label label7;
-        private TextBox textBox8;
+        private TextBox tb_lastname_client;
         private Label label8;
-        private TextBox textBox9;
+        private TextBox tb_login_client;
         private Label label9;
-        private TextBox textBox10;
+        private TextBox tb_firstname_client;
         private Label label10;
-        private Button button2;
+        private Button tb_add_client;
         private Button btn_deleteSpecialist;
         private DataGridView dgv_specialists;
         private Button button4;
-        private DataGridView dataGridView2;
+        private DataGridView dgv_clients;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
@@ -543,5 +567,7 @@
         private TextBox tb_nameTypeTicket;
         private ListBox lb_allTipeTicket;
         private Button btn_addNewTypeTicket;
+        private TextBox tb_phoneNumber_spec;
+        private Label label13;
     }
 }

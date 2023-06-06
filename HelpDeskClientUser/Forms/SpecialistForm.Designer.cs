@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_update = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btn_open = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_update
             // 
-            this.button1.Location = new System.Drawing.Point(561, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(227, 25);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Обновить список";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_update.Location = new System.Drawing.Point(328, 12);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(227, 25);
+            this.btn_update.TabIndex = 0;
+            this.btn_update.Text = "Обновить список";
+            this.btn_update.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -52,13 +53,24 @@
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // btn_open
+            // 
+            this.btn_open.Location = new System.Drawing.Point(561, 12);
+            this.btn_open.Name = "btn_open";
+            this.btn_open.Size = new System.Drawing.Size(227, 25);
+            this.btn_open.TabIndex = 2;
+            this.btn_open.Text = "Открыть заявку";
+            this.btn_open.UseVisualStyleBackColor = true;
+            this.btn_open.Click += new System.EventHandler(this.btn_open_Click);
+            // 
             // SpecialistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_open);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_update);
             this.Name = "SpecialistForm";
             this.Text = "Список заявок";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -68,7 +80,8 @@
 
         #endregion
 
-        private Button button1;
+        private Button btn_update;
         private DataGridView dataGridView1;
+        private Button btn_open;
     }
 }

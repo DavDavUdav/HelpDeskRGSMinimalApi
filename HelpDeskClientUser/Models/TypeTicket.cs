@@ -1,5 +1,6 @@
-﻿namespace ClientAppHelpDesk.Models
-{
+﻿namespace ClientAppHelpDesk.Models 
+{ 
+
     public class TypeTicket : Entity
     {
         public string NameType { get; set; } 

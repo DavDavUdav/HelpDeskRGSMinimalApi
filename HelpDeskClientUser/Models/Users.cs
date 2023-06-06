@@ -1,7 +1,10 @@
-﻿using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
+using ClientAppHelpDesk.Models;
 
-namespace MinimalWebApiHelpDesk.Models
+
+namespace ClientAppHelpDesk.Models
+
 {
     public class Users : Entity
     {
@@ -34,11 +37,5 @@ namespace MinimalWebApiHelpDesk.Models
         /// </summary>
         public string Phone { get; set; }
 
-        //[IgnoreDataMember]
-        //public TypeUser TUser { get; set; }
-        [IgnoreDataMember]
-        public ICollection<Tickets> ClientTickets { get; set; }
-        [IgnoreDataMember]
-        public ICollection<Tickets> SpecialistTickets { get; set; }
     }
 }

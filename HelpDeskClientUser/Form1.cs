@@ -1,3 +1,5 @@
+using ClientAppHelpDesk.Models;
+using ClientWebApiHelpDesk.Models;
 using HelpDeskClientUser.Forms;
 using System.Text;
 
@@ -5,6 +7,8 @@ namespace HelpDeskClientUser
 {
     public partial class Form1 : Form
     {
+        public static Users _LocalUser;
+        
         public Form1()
         {
             InitializeComponent();
@@ -13,41 +17,56 @@ namespace HelpDeskClientUser
         
 
         
-
-        private void btn_log_in_Click(object sender, EventArgs e)
+        //todo: дописать авторизацию
+        private async void btn_log_in_Click(object sender, EventArgs e)
         {
-            
-
-            switch (cb_typeUser.SelectedIndex)
+            if (tb_login.Text == "admin" && tb_password.Text == "admin")
             {
-                case 0:
-                    if (tb_login.Text == "admin" && tb_password.Text == "admin")
-                    {
-                        this.Visible= false;
-                        AdminForm adminForm = new AdminForm();
-                        adminForm.ShowDialog();
-                        this.Visible = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Неверные логин и/или пароль");
-                        return;
-                    }
-                    break;
+                this.Visible= false;
+                AdminForm adminForm = new AdminForm();
+                adminForm.ShowDialog();
+                this.Visible = true;
+                return;
+            }
 
-                case 1:
+            var logmod = new LoginModel()
+            {
+                Login = tb_login.Text,
+                Password = tb_password.Text
+            };
 
+            try
+            {
+                _LocalUser = await AccessingToApi.UserAuthorization(logmod);
+                if (_LocalUser == null)
+                {
+                    MessageBox.Show("Неверные логин и/или пароль");
+                    return;
+                }
 
-                    
-                    break; 
+                if (_LocalUser.TypeUser == 2)
+                {
+                    this.Visible = false;
+                    SpecialistForm specialistForm = new SpecialistForm();
+                    specialistForm.ShowDialog();
+                    specialistForm._specialist = _LocalUser;
+                    this.Visible = true;
+                    return;
+                }
 
-                case 2:
-
-                    break;
-
-                default:
-                    break;
-
+                if (_LocalUser.TypeUser == 1)
+                {
+                    this.Visible = false;
+                    ClientForm clientForm = new ClientForm();
+                    clientForm.ShowDialog();
+                    clientForm._client = _LocalUser;
+                    this.Visible = true;
+                    return;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Неверные логин и/или пароль");
             }
         }
     }

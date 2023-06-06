@@ -17,7 +17,7 @@ namespace HelpDeskClientUser.Forms
         public AdminForm()
         {
             InitializeComponent();
-            UpdateDataGridView();
+            UpdateData();
         }
 
 
@@ -34,25 +34,29 @@ namespace HelpDeskClientUser.Forms
 
         private async void btn_addSpecialist_Click(object sender, EventArgs e)
         {
+            
             if (
                 String.IsNullOrEmpty(tb_firstname.Text) ||
                 String.IsNullOrEmpty(tb_lastname.Text) ||
                 String.IsNullOrEmpty(tb_mail.Text) ||
                 String.IsNullOrEmpty(tb_login.Text) ||
-                String.IsNullOrEmpty(tb_password.Text)
+                String.IsNullOrEmpty(tb_password.Text)||
+                String.IsNullOrEmpty(tb_phoneNumber_spec.Text)
                 )
             {
                 MessageBox.Show("Заполните все поля");
                 return;
             }
 
-            var spec = new Specialists
+            var spec = new Users
             {
                 FirstName = tb_firstname.Text,
                 LastName = tb_lastname.Text,
                 Email = tb_mail.Text,
                 Login = tb_login.Text,
                 Password = tb_password.Text,
+                TypeUser = 2,
+                Phone = tb_phoneNumber_spec.Text
             };
             try
             {
@@ -61,16 +65,18 @@ namespace HelpDeskClientUser.Forms
                 {
                     MessageBox.Show("Специалист успешно добавлен");
                 }
-                UpdateDataGridView();
+                UpdateData();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            
         }
 
         private async void btn_deleteSpecialist_Click(object sender, EventArgs e)
         {
+            /*
             try
             {
                 int selectedIndex = dgv_specialists.SelectedRows[0].Index;
@@ -94,16 +100,95 @@ namespace HelpDeskClientUser.Forms
             {
                 MessageBox.Show($"Ошибка: {ex.Message}");
             }
+            */
         }
 
-        public async void UpdateDataGridView()
+        /// <summary>
+        /// Обновляем данные datagridview
+        /// </summary>
+        public async void UpdateData()
         {
-            var specs = await AccessingToApi.GetAllSpecialists();
-            if (specs != null)
+            try
             {
-                dgv_specialists.DataSource = specs;
+                var specs = await AccessingToApi.GetAllSpecialists();
+                if (specs != null)
+                {
+                    dgv_specialists.DataSource = specs;
+                }
+            
+                var clients = await AccessingToApi.GetAllClients();
+                if (clients != null)
+                {
+                    dgv_clients.DataSource = clients;
+                }
+
+                var ttype = await AccessingToApi.GetAllTicketType();
+                
+                
+                foreach(var t in ttype)
+                {
+                    lb_allTipeTicket.Items.Add(t.NameType);
+                }
+                
+                //lb_allTipeTicket.Items.AddRange = ttype;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            
+        }
+
+        private async void tb_add_client_Click(object sender, EventArgs e)
+        {
+            if (
+                String.IsNullOrEmpty(tb_firstname_client.Text) ||
+                String.IsNullOrEmpty(tb_lastname_client.Text) ||
+                String.IsNullOrEmpty(tb_mail_client.Text) ||
+                String.IsNullOrEmpty(tb_login_client.Text) ||
+                String.IsNullOrEmpty(tb_pass_client.Text) ||
+                String.IsNullOrEmpty(tb_phoneNumber_client.Text)
+                )
+            {
+                MessageBox.Show("Заполните все поля");
+                return;
+            }
+
+            var client = new Users
+            {
+                FirstName = tb_firstname_client.Text,
+                LastName = tb_lastname_client.Text,
+                Email = tb_mail_client.Text,
+                Login = tb_login_client.Text,
+                Password = tb_pass_client.Text,
+                TypeUser = 1,
+                Phone = tb_phoneNumber_client.Text
+            };
+            try
+            {
+                var auth = await AccessingToApi.AddNewClientAsync(client);
+                if (auth)
+                {
+                    MessageBox.Show("Клиент успешно добавлен");
+                }
+                UpdateData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
+        private async void btn_addNewTypeTicket_Click(object sender, EventArgs e)
+        {
+            var ttype = new TypeTicket
+            {
+                NameType = tb_nameTypeTicket.Text
+            };
+
+            await AccessingToApi.AddNewTipeTicketAsync(ttype);
+            UpdateData();
+        }
     }
 }

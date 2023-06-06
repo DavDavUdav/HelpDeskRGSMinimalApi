@@ -1,9 +1,13 @@
-﻿using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
+﻿using MinimalWebApiHelpDesk.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MinimalWebApiHelpDesk.Models
-{
-    public class Users : Entity
+{ 
+    public class LocalUser : Entity
     {
         /// <summary>
         /// Имя пользователя.
@@ -16,7 +20,7 @@ namespace MinimalWebApiHelpDesk.Models
         /// <summary>
         /// Тип пользователя(специалист или клиент).
         /// </summary>
-        public int TypeUser { get; set; }
+        public string TypeUser { get; set; }
         /// <summary>
         /// Логин.
         /// </summary>
@@ -33,12 +37,5 @@ namespace MinimalWebApiHelpDesk.Models
         /// Номер телефона.
         /// </summary>
         public string Phone { get; set; }
-
-        //[IgnoreDataMember]
-        //public TypeUser TUser { get; set; }
-        [IgnoreDataMember]
-        public ICollection<Tickets> ClientTickets { get; set; }
-        [IgnoreDataMember]
-        public ICollection<Tickets> SpecialistTickets { get; set; }
     }
 }
