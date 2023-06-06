@@ -32,6 +32,8 @@ namespace HelpDeskClientUser.Forms
             }
             //todo: дописать загрузку текущих заявок пользователя.
 
+            var tickets = await AccessingToApi.GetUserTicketsAsync(_client);
+            dataGridView2.DataSource= tickets;
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -49,10 +51,11 @@ namespace HelpDeskClientUser.Forms
             this.Visible= false;
             string tticket = lb_typeTicket.SelectedItems[0].ToString();
             CreateTicketForm createTicketForm = new CreateTicketForm();
-            createTicketForm.ShowDialog();
             createTicketForm._tticket = tticket;
             createTicketForm._client = _client;
+            createTicketForm.ShowDialog();
             this.Visible = true;
+            LoadData();
         }
     }
 }

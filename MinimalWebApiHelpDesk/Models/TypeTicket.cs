@@ -4,6 +4,6 @@
     {
         public string NameType { get; set; } 
 
-        public ICollection<Tickets> Tickets { get; set; }
+        //public ICollection<Tickets> Tickets { get; set; }
     }
 }

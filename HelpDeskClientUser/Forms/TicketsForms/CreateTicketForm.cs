@@ -50,13 +50,14 @@ namespace HelpDeskClientUser.Forms.TicketsForms
             var ticket = new Tickets()
             {
                 Title = tb_title.Text,
-                TypeTicket = _tticket,
+                Type = _tticket,
                 ClientId = _client.Id,
                 CreateDate = DateTime.Today.Date,
-                Priority = cb_prioritet.SelectedText,
-                LastUpdateDate = DateTime.Today,
+                Priority = cb_prioritet.Text,
+                LastUpdateDate = DateTime.Now,
                 Status = "Ожидание",
-                Description = tb_description.Text
+                Description = tb_description.Text,
+                AssignedTo = 1
             };
 
             var responce = await AccessingToApi.CreateTicketAsync(ticket);

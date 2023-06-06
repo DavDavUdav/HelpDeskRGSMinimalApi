@@ -48,8 +48,9 @@ namespace HelpDeskClientUser
                 {
                     this.Visible = false;
                     SpecialistForm specialistForm = new SpecialistForm();
-                    specialistForm.ShowDialog();
                     specialistForm._specialist = _LocalUser;
+                    specialistForm.ShowDialog();
+                    
                     this.Visible = true;
                     return;
                 }
@@ -58,8 +59,9 @@ namespace HelpDeskClientUser
                 {
                     this.Visible = false;
                     ClientForm clientForm = new ClientForm();
-                    clientForm.ShowDialog();
                     clientForm._client = _LocalUser;
+                    clientForm.ShowDialog();
+                    
                     this.Visible = true;
                     return;
                 }

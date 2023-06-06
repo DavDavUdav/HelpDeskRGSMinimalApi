@@ -122,9 +122,8 @@ namespace HelpDeskClientUser.Forms
                     dgv_clients.DataSource = clients;
                 }
 
+                lb_allTipeTicket.Items.Clear();
                 var ttype = await AccessingToApi.GetAllTicketType();
-                
-                
                 foreach(var t in ttype)
                 {
                     lb_allTipeTicket.Items.Add(t.NameType);

@@ -16,7 +16,7 @@ namespace ClientAppHelpDesk.Models
         /// <summary>
         /// Тип заявки.
         /// </summary>
-        public string TypeTicket { get; set; }
+        public string Type { get; set; }
         /// <summary>
         /// Описание заявки.
         /// </summary>
@@ -58,6 +58,6 @@ namespace ClientAppHelpDesk.Models
         /// <summary>
         /// Тип заявки.
         /// </summary>
-        public TypeTicket typeTick { get; set; }
+        //public TypeTicket typeTick { get; set; }
     }
 }

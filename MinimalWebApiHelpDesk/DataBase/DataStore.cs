@@ -23,20 +23,20 @@ namespace ServerAppHelpDesk.DataBase
 
         public async Task AddAsync<T>(T entity) where T : Entity
         {
-            _dataStore.Add<T>(entity);
+            await _dataStore.Set<T>().AddAsync(entity);
             await Save();
         }
 
-        public async Task<List<T>> GetAllAsync<T>() where T : Entity
+        public async Task<List<T>?> GetAllAsync<T>() where T : Entity
         {
             var entitys = await _dataStore.Set<T>().ToListAsync();
             return entitys;
         }
 
-        public async Task<IEnumerable<T>> GetAllFilteredAsync<T>(Expression<Func<T, bool>> filter) where T : Entity
+        public async Task<IEnumerable<T>?> GetAllFilteredAsync<T>(Expression<Func<T, bool>> filter) where T : Entity
         {
             var entitys = await _dataStore.Set<T>().Where(filter).ToArrayAsync();
-            return entitys;
+            return entitys ?? null;
         }
 
         public async Task<T?> GetFirstAsync<T>() where T : Entity

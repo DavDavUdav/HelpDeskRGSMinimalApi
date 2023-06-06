@@ -23,7 +23,7 @@ namespace ServerAppHelpDesk.DataBase
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-L93R2E4;Database=HDDataBase2;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-L93R2E4;Database=HDDataBase3;Trusted_Connection=True;TrustServerCertificate=True");
             optionsBuilder.EnableSensitiveDataLogging();
         }
         
@@ -54,6 +54,9 @@ namespace ServerAppHelpDesk.DataBase
                 .WithOne(t => t.Specialist)
                 .HasForeignKey(t => t.AssignedTo)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            
+                
 
             /*
             modelBuilder.Entity<Tickets>()

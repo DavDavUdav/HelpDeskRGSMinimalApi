@@ -18,6 +18,13 @@ namespace HelpDeskClientUser.Forms
         public SpecialistForm()
         {
             InitializeComponent();
+            UpdateData();
+        }
+
+        async void UpdateData()
+        {
+            var tickets = await AccessingToApi.GetActualTicketsAsync();
+            dataGridView1.DataSource= tickets;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -31,6 +38,8 @@ namespace HelpDeskClientUser.Forms
             {
                 MessageBox.Show("Выберите заявку которую хотите открыть");
             }
+
+
         }
     }
 }

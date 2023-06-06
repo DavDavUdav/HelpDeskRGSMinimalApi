@@ -222,6 +222,71 @@ namespace HelpDeskClientUser
             }
         }
 
+        public static async Task<List<Tickets>> GetActualTicketsAsync()
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync($"{address}/api/tickets/actual/get");
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+
+                    try
+                    {
+                        string jsonStringUnescaped = System.Text.RegularExpressions.Regex.Unescape(result.Substring(1, result.Length - 2));
+
+                        List<Tickets> specialists = JsonSerializer.Deserialize<List<Tickets>>(jsonStringUnescaped);
+
+                        //List<Specialists> specialists = JsonSerializer.Deserialize<List<Specialists>>(Regex.Unescape(result));
+                        return specialists;
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+                    return JsonSerializer.Deserialize<List<Tickets>>(result); ;
+                }
+                else
+                {
+                    throw new Exception($"Status code: {response.StatusCode}");
+                }
+                // 
+            }
+        }
+
+
+        public static async Task<List<Tickets>> GetUserTicketsAsync(Users user)
+        {
+            using (var client = new HttpClient())
+            {
+                var content = new StringContent(JsonSerializer.Serialize(user), Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync($"{address}/api/user/tickets/get", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+
+                    try
+                    {
+                        string jsonStringUnescaped = System.Text.RegularExpressions.Regex.Unescape(result.Substring(1, result.Length - 2));
+
+                        List<Tickets> tickets = JsonSerializer.Deserialize<List<Tickets>>(jsonStringUnescaped);
+                        
+
+                        //List<Specialists> specialists = JsonSerializer.Deserialize<List<Specialists>>(Regex.Unescape(result));
+                        return tickets;
+                    }
+                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+                    return JsonSerializer.Deserialize<List<Tickets>>(result); ;
+                }
+                else
+                {
+                    throw new Exception($"Status code: {response.StatusCode}");
+                }
+                // 
+            }
+        }
+
+
         /// <summary>
         /// Авторизация пользователя.
         /// </summary>

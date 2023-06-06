@@ -1,7 +1,9 @@
-﻿using MinimalWebApiHelpDesk.Models;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using MinimalWebApiHelpDesk.Models;
 using ServerAppHelpDesk.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +19,7 @@ namespace MinimalWebApiHelpDesk.Models
         /// <summary>
         /// Тип заявки.
         /// </summary>
-        public string TypeTicket { get; set; }
+        public string Type { get; set; }
         /// <summary>
         /// Описание заявки.
         /// </summary>
@@ -33,32 +35,34 @@ namespace MinimalWebApiHelpDesk.Models
         /// <summary>
         /// Дата создания заявки.
         /// </summary>
+        [Column(TypeName = "datetime2(0)")]
         public DateTime CreateDate { get; set; }
         /// <summary>
         /// Дата последнего изменения заявки.
         /// </summary>
+        [Column(TypeName = "datetime2(0)")]
         public DateTime LastUpdateDate { get; set; }
         
         /// <summary>
         /// ID автора (клиента).
         /// </summary>
-        public int ClientId { get; set; }
+        public int? ClientId { get; set; }
         /// <summary>
         /// ID ответственного сотрудника.
         /// </summary>
-        public int AssignedTo { get; set; }
+        public int? AssignedTo { get; set; }
 
         /// <summary>
         /// Клиент.
         /// </summary>
-        public Users Client { get; set; }
+        public Users? Client { get; set; }
         /// <summary>
         /// Сотрудник.
         /// </summary>
-        public Users Specialist { get; set; }
+        public Users? Specialist { get; set; }
         /// <summary>
         /// Тип заявки.
         /// </summary>
-        public TypeTicket typeTick { get; set; }
+        //public TypeTicket typeTick { get; set; }
     }
 }
