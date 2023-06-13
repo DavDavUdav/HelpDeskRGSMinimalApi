@@ -361,3 +361,5 @@ app.MapPost("/api/user/getbyid", async (HttpContext http) =>
 });
 
 app.Run();
+
+Console.ReadKey();

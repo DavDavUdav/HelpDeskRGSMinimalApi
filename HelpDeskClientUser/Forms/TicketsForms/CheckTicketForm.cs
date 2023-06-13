@@ -19,10 +19,10 @@ namespace HelpDeskClientUser.Forms.TicketsForms
         {
             InitializeComponent();
             _Tickets = tickets;
-            LoadData();
+             
         }
 
-        async void LoadData()
+        async Task LoadData()
         {
             _Tickets = await AccessingToApi.GetUserTicketsByIdAsync(_Tickets.Id);
             
@@ -42,6 +42,7 @@ namespace HelpDeskClientUser.Forms.TicketsForms
             {
                 button1.Text = "Выполнено";
                 button1.Click -= button1_Click;
+                button1.Click -= button1_Click2;
 
                 button1.Click += button1_Click2;
             }
@@ -52,7 +53,17 @@ namespace HelpDeskClientUser.Forms.TicketsForms
                
 
                 button1.Click -= button1_Click2;
+                button1.Click -= button1_Click;
+
                 button1.Click += button1_Click;
+            }
+
+            if (_Tickets.Status == "Выполнено")
+            {
+                button1.Text = "Выйти";
+                button1.Click -= button1_Click;
+                button1.Click -= button1_Click2;
+                button1.Click += button1_Click3;
             }
         }
 
@@ -61,6 +72,7 @@ namespace HelpDeskClientUser.Forms.TicketsForms
             var updateTicket = _Tickets;
             updateTicket.Status = "В работе";
             await AccessingToApi.UpdateTicketAsync(updateTicket);
+            await LoadData();
         }
 
         private async void button1_Click2(object sender, EventArgs e)
@@ -68,7 +80,14 @@ namespace HelpDeskClientUser.Forms.TicketsForms
             var updateTicket = _Tickets;
             updateTicket.Status = "Выполнена";
             await AccessingToApi.UpdateTicketAsync(updateTicket);
-            LoadData();
+            await LoadData();
+        }
+
+        private async void button1_Click3(object sender, EventArgs e)
+        {
+            
+            await LoadData();
+            this.Close();
         }
 
         private async void btn_reject_Click(object sender, EventArgs e)
@@ -76,7 +95,12 @@ namespace HelpDeskClientUser.Forms.TicketsForms
             var updateTicket = _Tickets;
             updateTicket.Status = "Отклонена";
             await AccessingToApi.UpdateTicketAsync(updateTicket);
-            LoadData();
+            await LoadData();
+        }
+
+        private async void CheckTicketForm_Load(object sender, EventArgs e)
+        {
+            await LoadData();
         }
     }
 }

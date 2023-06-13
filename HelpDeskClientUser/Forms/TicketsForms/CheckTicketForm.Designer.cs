@@ -234,6 +234,7 @@
             this.Name = "CheckTicketForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Просмотр заявки";
+            this.Load += new System.EventHandler(this.CheckTicketForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
