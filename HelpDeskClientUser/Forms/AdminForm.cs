@@ -110,6 +110,8 @@ namespace HelpDeskClientUser.Forms
         {
             try
             {
+                tb_server_address.Text = AccessingToApi.address;
+
                 var specs = await AccessingToApi.GetAllSpecialists();
                 if (specs != null)
                 {
@@ -188,6 +190,11 @@ namespace HelpDeskClientUser.Forms
 
             await AccessingToApi.AddNewTipeTicketAsync(ttype);
             UpdateData();
+        }
+
+        private void btn_save_address_Click(object sender, EventArgs e)
+        {
+            AccessingToApi.address = tb_server_address.Text;
         }
     }
 }

@@ -188,6 +188,44 @@ namespace HelpDeskClientUser
         }
 
         /// <summary>
+        /// Получить клиента.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<Users> GetUserByIdAsync(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var content = new StringContent(JsonSerializer.Serialize(id), Encoding.UTF8, "application/json");
+
+                    var response = await client.PostAsync($"{address}/api/user/getbyid", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+
+                        string jsonStringUnescaped = System.Text.RegularExpressions.Regex.Unescape(result.Substring(1, result.Length - 2));
+
+                        Users tickets = JsonSerializer.Deserialize<Users>(jsonStringUnescaped);
+                        return tickets;
+                    }
+                    else
+                    {
+                        throw new Exception($"Status code: {response.StatusCode}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Users user = new();
+                    return user;
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Получить типы заявок.
         /// </summary>
         /// <returns></returns>
@@ -222,6 +260,11 @@ namespace HelpDeskClientUser
             }
         }
 
+        /// <summary>
+        /// Получить актуальные заявки.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static async Task<List<Tickets>> GetActualTicketsAsync()
         {
             using (var client = new HttpClient())
@@ -252,40 +295,93 @@ namespace HelpDeskClientUser
             }
         }
 
-
+        /// <summary>
+        /// Получить заявки от пользователя по id пользователя.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static async Task<List<Tickets>> GetUserTicketsAsync(Users user)
         {
             using (var client = new HttpClient())
             {
-                var content = new StringContent(JsonSerializer.Serialize(user), Encoding.UTF8, "application/json");
-
-                var response = await client.PostAsync($"{address}/api/user/tickets/get", content);
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    var result = await response.Content.ReadAsStringAsync();
+                    var content = new StringContent(JsonSerializer.Serialize(user), Encoding.UTF8, "application/json");
 
-                    try
+                    var response = await client.PostAsync($"{address}/api/user/tickets/get", content);
+                    if (response.IsSuccessStatusCode)
                     {
+                        var result = await response.Content.ReadAsStringAsync();
+
+                    
                         string jsonStringUnescaped = System.Text.RegularExpressions.Regex.Unescape(result.Substring(1, result.Length - 2));
 
-                        List<Tickets> tickets = JsonSerializer.Deserialize<List<Tickets>>(jsonStringUnescaped);
-                        
+                        //List<Tickets> tickets = JsonSerializer.Deserialize<List<Tickets>>(jsonStringUnescaped);
+                        var options = new JsonSerializerOptions
+                        {
+                            ReferenceHandler = ReferenceHandler.Preserve
+                        };
+                        List<Tickets> tickets = JsonSerializer.Deserialize<List<Tickets>>(jsonStringUnescaped, options);
 
-                        //List<Specialists> specialists = JsonSerializer.Deserialize<List<Specialists>>(Regex.Unescape(result));
+                        //List<Tickets> tickets = JsonSerializer.Deserialize<List<Tickets>>(Regex.Unescape(result));
+                        return tickets;
+
+
+                        //return JsonSerializer.Deserialize<List<Tickets>>(result);
+                    }
+                    else
+                    {
+                        throw new Exception($"Status code: {response.StatusCode}");
+                    }
+
+                }
+                catch (Exception ex) 
+                { 
+                    MessageBox.Show(ex.Message);
+                    List<Tickets> ltickets = new();
+                    return ltickets; 
+                }
+            }
+        }
+
+        /// <summary>
+        /// Получить заявку по id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static async Task<Tickets> GetUserTicketsByIdAsync(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var content = new StringContent(JsonSerializer.Serialize(id), Encoding.UTF8, "application/json");
+
+                    var response = await client.PostAsync($"{address}/api/tickets/getbyid", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var result = await response.Content.ReadAsStringAsync();
+
+                        string jsonStringUnescaped = System.Text.RegularExpressions.Regex.Unescape(result.Substring(1, result.Length - 2));
+                        
+                        Tickets tickets = JsonSerializer.Deserialize<Tickets>(jsonStringUnescaped);
                         return tickets;
                     }
-                    catch (Exception ex) { MessageBox.Show(ex.Message); }
+                    else
+                    {
+                        throw new Exception($"Status code: {response.StatusCode}");
+                    }
 
-                    return JsonSerializer.Deserialize<List<Tickets>>(result); ;
                 }
-                else
+                catch (Exception ex)
                 {
-                    throw new Exception($"Status code: {response.StatusCode}");
+                    MessageBox.Show(ex.Message);
+                    Tickets ltickets = new();
+                    return ltickets;
                 }
                 // 
             }
         }
-
 
         /// <summary>
         /// Авторизация пользователя.
@@ -324,156 +420,32 @@ namespace HelpDeskClientUser
 
 
 
+        //todo: дописать изменение данных заявки.
+        /// <summary>
+        /// Изменение заявки.
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<bool> UpdateTicketAsync(Tickets ticket)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var content = new StringContent(JsonSerializer.Serialize(ticket), Encoding.UTF8, "application/json");
 
-
-
-
-        #region get
-
-
-
-
-
-
-
-
-        #endregion get
-        /*
-            
-                #region post
-
-                /// <summary>
-                /// Авторизация пользователя
-                /// </summary>
-                /// <returns>object Clients</returns>
-                /// <exception cref="Exception"></exception>
-                public static async Task<Clients> SignInClientAsync(string log, string pass)
+                var response = await httpClient.PostAsync($"{address}/api/ticket/update", content);
+                if (response.IsSuccessStatusCode)
                 {
-                    using (var client = new HttpClient())
-                    {
-                        var _loginModel = new LoginModel
-                        {
-                            Login = log,
-                            Password = pass
-                        };
-
-                        // объект в json 
-                        var content = new StringContent(JsonSerializer.Serialize(_loginModel), Encoding.UTF8, "application/json");
-
-                        var response = await client.PostAsync($"{address}/api/client/signin", content);
-                        if (response.IsSuccessStatusCode)
-                        {
-                            var result = await response.Content.ReadAsStringAsync();
-                            return JsonSerializer.Deserialize<Clients>(result);
-                        }
-                        else
-                        {
-                            throw new Exception($"Status code: {response.StatusCode}");
-                        }
-                    }
+                    return true;
+                }
+                else
+                {
+                    throw new Exception($"{response.StatusCode}, {response.RequestMessage}");
                 }
 
-                /// <summary>
-                /// Авторизация специалиста.
-                /// </summary>
-                /// <param name="log">логин</param>
-                /// <param name="pass">пароль</param>
-                /// <returns></returns>
-                /// <exception cref="Exception"></exception>
-                public static async Task<Specialists> SignInSpecialistAsync(string log, string pass)
-                {
-                    using (var httpClient = new HttpClient())
-                    {
-                        var _loginModel = new LoginModel
-                        {
-                            Login = log,
-                            Password = pass
-                        };
+            }
+        }
 
-                        var content = new StringContent(System.Text.Json.JsonSerializer.Serialize(_loginModel), System.Text.Encoding.UTF8, "application/json");
-
-                        var responce = await httpClient.PostAsync($"{address}/api/specialist/signin", content);
-                        if (responce.IsSuccessStatusCode)
-                        {
-                            var result = await responce.Content.ReadAsStringAsync();
-                            return JsonSerializer.Deserialize<Specialists>(result);
-                        }
-                        else
-                        {
-                            throw new Exception($"Код ошибки: {responce.StatusCode},\n Сообщение: {responce.RequestMessage}");
-                        }
-                    }
-                }
-        */
-
-
-        /*
-                #endregion post
-
-                #region put
-
-                #endregion put
-
-
-                #region delete
-
-                /// <summary>
-                /// Удаление клиента
-                /// </summary>
-                /// <param name="client"></param>
-                /// <returns></returns>
-                public static async Task<bool> DeleteClientAsync(Clients client)
-                {
-                    using(var httpClient = new HttpClient())
-                    {
-                        var content = new StringContent(JsonSerializer.Serialize<Clients>(client), Encoding.UTF8, "application.json");
-                        var responce = await httpClient.PutAsync($"{address}/api/client/delete", content);
-                        if (responce.IsSuccessStatusCode)
-                        {
-                            return true;
-                        }
-                        else throw new Exception($"{responce.StatusCode}, {responce.RequestMessage}");
-                    }
-                }
-
-                /// <summary>
-                /// Удаление специалиста.
-                /// </summary>
-                /// <param name="specialist"></param>
-                /// <returns></returns>
-                /// <exception cref="Exception"></exception>
-                public static async Task<bool> DeleteSpecialistAsync(int id)
-                {
-                    using(var httpClient = new HttpClient())
-                    {
-
-                        var responce = await httpClient.PutAsJsonAsync($"{address}/api/specialist/delete?id={id}", id);
-                        if (responce.IsSuccessStatusCode)
-                        {
-                            return true;
-                        }
-                        else throw new Exception( $"Код ошибки: {responce.StatusCode}\n Сообщение: {responce.RequestMessage}");
-                    }
-
-                }
-
-                #endregion delete
-
-                public static async Task<List<Clients>> GetClientsAsync()
-                {
-                    var httpClient = new HttpClient();
-                    var responce = await httpClient.GetAsync($"{address}/api/users");
-                    if (responce.IsSuccessStatusCode)
-                    {
-                        var content = await responce.Content.ReadAsStringAsync();
-                        return JsonSerializer.Deserialize<List<Clients>>(content);
-                    }
-                    else
-                    {
-                        throw new Exception( $"Status code: {responce.StatusCode},\n Request message: {responce.RequestMessage}");
-                    }
-                }
-                /**/
 
     }
 

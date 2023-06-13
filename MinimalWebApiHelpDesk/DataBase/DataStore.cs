@@ -4,6 +4,7 @@ using MinimalWebApiHelpDesk.Interfaces;
 using MinimalWebApiHelpDesk.Models;
 using ServerAppHelpDesk.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -14,11 +15,15 @@ namespace ServerAppHelpDesk.DataBase
 {
     public class DataStore : IDataStore
     {
-        private static DataStoreDbContext _dataStore;
+        private readonly DataStoreDbContext _dataStore;
 
-        public DataStore()
+        
+
+        public DataStore(IConfiguration configuration)
         {
-            _dataStore = new DataStoreDbContext();
+            var str = configuration.GetSection("ConnectionStrings").Value;
+
+            _dataStore = new DataStoreDbContext(str);
         }
 
         public async Task AddAsync<T>(T entity) where T : Entity
@@ -47,13 +52,24 @@ namespace ServerAppHelpDesk.DataBase
 
         public async Task<T?> GetFirstFilteredAsync<T>(Expression<Func<T, bool>> filter) where T : Entity
         {
+            
             var entity = await _dataStore.Set<T>().FirstOrDefaultAsync(filter);
             return entity ?? null;
         }
 
         public async Task UpdateAsync<T>(T entity) where T : Entity
         {
-            _dataStore.Entry<T>(entity).State = EntityState.Modified;
+            //_dataStore.Set<T>().Entry<T>(entity).State = EntityState.Modified;
+
+            var dbSet = _dataStore.Set<T>();
+            var existingEntity = dbSet.Find(entity.Id);
+            if (existingEntity != null)
+            {
+                _dataStore.Entry(existingEntity).CurrentValues.SetValues(entity);
+            }
+            
+            //_dataStore.Entry(entity).State = EntityState.Modified;
+
             await Save();
             
         }

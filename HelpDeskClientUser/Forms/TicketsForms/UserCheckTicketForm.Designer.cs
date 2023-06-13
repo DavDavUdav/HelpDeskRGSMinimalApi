@@ -1,6 +1,6 @@
 ﻿namespace HelpDeskClientUser.Forms.TicketsForms
 {
-    partial class CheckTicketForm
+    partial class UserCheckTicketForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,8 +37,6 @@
             this.tb_description = new System.Windows.Forms.TextBox();
             this.tb_title = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btn_reject = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tb_phoneNumber = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -62,8 +60,8 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(578, 303);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.Size = new System.Drawing.Size(578, 274);
+            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Заявка";
             // 
@@ -73,16 +71,16 @@
             this.tb_status.Name = "tb_status";
             this.tb_status.ReadOnly = true;
             this.tb_status.Size = new System.Drawing.Size(129, 23);
-            this.tb_status.TabIndex = 10;
+            this.tb_status.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(141, 50);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 15);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Cтатус";
+            this.label4.Size = new System.Drawing.Size(41, 15);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "статус";
             // 
             // tb_prioritet
             // 
@@ -100,6 +98,7 @@
             this.label3.Size = new System.Drawing.Size(106, 15);
             this.label3.TabIndex = 5;
             this.label3.Text = "Приоритет заявки";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -116,7 +115,7 @@
             this.tb_description.Multiline = true;
             this.tb_description.Name = "tb_description";
             this.tb_description.ReadOnly = true;
-            this.tb_description.Size = new System.Drawing.Size(562, 176);
+            this.tb_description.Size = new System.Drawing.Size(562, 147);
             this.tb_description.TabIndex = 2;
             // 
             // tb_title
@@ -136,26 +135,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Наименование заявки";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(715, 292);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Взять в работу";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btn_reject
-            // 
-            this.btn_reject.Location = new System.Drawing.Point(596, 292);
-            this.btn_reject.Name = "btn_reject";
-            this.btn_reject.Size = new System.Drawing.Size(110, 23);
-            this.btn_reject.TabIndex = 3;
-            this.btn_reject.Text = "Отклонить";
-            this.btn_reject.UseVisualStyleBackColor = true;
-            this.btn_reject.Click += new System.EventHandler(this.btn_reject_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tb_phoneNumber);
@@ -167,9 +146,9 @@
             this.groupBox2.Location = new System.Drawing.Point(596, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(235, 274);
-            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Данные клиента";
+            this.groupBox2.Text = "Ответственный сотрудник";
             // 
             // tb_phoneNumber
             // 
@@ -222,18 +201,16 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Имя";
             // 
-            // CheckTicketForm
+            // UserCheckTicketForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 322);
+            this.ClientSize = new System.Drawing.Size(843, 295);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btn_reject);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "CheckTicketForm";
+            this.Name = "UserCheckTicketForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Просмотр заявки";
+            this.Text = "UserCheckTicketForm";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -245,22 +222,20 @@
         #endregion
 
         private GroupBox groupBox1;
+        public TextBox tb_prioritet;
         private Label label3;
         private Label label2;
         public TextBox tb_description;
-        private Label label1;
-        private Button button1;
-        private Button btn_reject;
         public TextBox tb_title;
-        public TextBox tb_prioritet;
+        private Label label1;
         private GroupBox groupBox2;
+        public TextBox tb_status;
+        private Label label4;
         public TextBox tb_phoneNumber;
         private Label label7;
         public TextBox tb_lastname;
         private Label label6;
         public TextBox tb_firstname;
         private Label label5;
-        public TextBox tb_status;
-        private Label label4;
     }
 }

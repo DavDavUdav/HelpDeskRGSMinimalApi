@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace MinimalWebApiHelpDesk.Models
 {
@@ -36,9 +37,9 @@ namespace MinimalWebApiHelpDesk.Models
 
         //[IgnoreDataMember]
         //public TypeUser TUser { get; set; }
-        [IgnoreDataMember]
+        [IgnoreDataMember, JsonIgnore]
         public ICollection<Tickets> ClientTickets { get; set; }
-        [IgnoreDataMember]
+        [IgnoreDataMember, JsonIgnore]
         public ICollection<Tickets> SpecialistTickets { get; set; }
     }
 }

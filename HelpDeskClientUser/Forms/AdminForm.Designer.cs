@@ -71,6 +71,10 @@
             this.tb_nameTypeTicket = new System.Windows.Forms.TextBox();
             this.lb_allTipeTicket = new System.Windows.Forms.ListBox();
             this.btn_addNewTypeTicket = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tb_server_address = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btn_save_address = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -82,6 +86,8 @@
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -406,6 +412,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -496,6 +503,45 @@
             this.btn_addNewTypeTicket.UseVisualStyleBackColor = true;
             this.btn_addNewTypeTicket.Click += new System.EventHandler(this.btn_addNewTypeTicket_Click);
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.groupBox6);
+            this.tabPage4.Location = new System.Drawing.Point(4, 24);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(446, 422);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Настройки";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tb_server_address
+            // 
+            this.tb_server_address.Location = new System.Drawing.Point(6, 22);
+            this.tb_server_address.Name = "tb_server_address";
+            this.tb_server_address.Size = new System.Drawing.Size(250, 23);
+            this.tb_server_address.TabIndex = 15;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btn_save_address);
+            this.groupBox6.Controls.Add(this.tb_server_address);
+            this.groupBox6.Location = new System.Drawing.Point(8, 6);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(430, 52);
+            this.groupBox6.TabIndex = 16;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "адрес сервера";
+            // 
+            // btn_save_address
+            // 
+            this.btn_save_address.Location = new System.Drawing.Point(262, 21);
+            this.btn_save_address.Name = "btn_save_address";
+            this.btn_save_address.Size = new System.Drawing.Size(162, 24);
+            this.btn_save_address.TabIndex = 16;
+            this.btn_save_address.Text = "Сохранить";
+            this.btn_save_address.UseVisualStyleBackColor = true;
+            this.btn_save_address.Click += new System.EventHandler(this.btn_save_address_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -505,6 +551,7 @@
             this.MaximumSize = new System.Drawing.Size(470, 489);
             this.MinimumSize = new System.Drawing.Size(470, 489);
             this.Name = "AdminForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Админ-панель";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -520,6 +567,9 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -569,5 +619,9 @@
         private Button btn_addNewTypeTicket;
         private TextBox tb_phoneNumber_spec;
         private Label label13;
+        private TabPage tabPage4;
+        private GroupBox groupBox6;
+        private Button btn_save_address;
+        private TextBox tb_server_address;
     }
 }

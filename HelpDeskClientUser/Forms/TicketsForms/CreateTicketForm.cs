@@ -35,8 +35,12 @@ namespace HelpDeskClientUser.Forms.TicketsForms
 
         private void tb_description_Leave(object sender, EventArgs e)
         {
-            tb_description.Text = "Просьба указать информацию максимально подробно, если проблемма с программой то указать что за программа и на каком этапе возникла проблемма, если заказ картриджей то просьба указать модель принтера(или картриджа), а так же количество которое нужно";
-            tb_description.ForeColor = Color.Gray;
+            if (string.IsNullOrEmpty(tb_description.Text))
+            {
+                tb_description.Text = "Просьба указать информацию максимально подробно, если проблемма с программой то указать что за программа и на каком этапе возникла проблемма, если заказ картриджей то просьба указать модель принтера(или картриджа), а так же количество которое нужно";
+                tb_description.ForeColor = Color.Gray;
+            }
+            
         }
 
         private void tb_description_Enter(object sender, EventArgs e)

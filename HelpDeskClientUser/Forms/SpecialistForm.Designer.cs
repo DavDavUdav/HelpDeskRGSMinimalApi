@@ -42,6 +42,7 @@
             this.btn_update.TabIndex = 0;
             this.btn_update.Text = "Обновить список";
             this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
             // dataGridView1
             // 
@@ -72,6 +73,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_update);
             this.Name = "SpecialistForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Список заявок";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

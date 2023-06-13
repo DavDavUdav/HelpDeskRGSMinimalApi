@@ -11,19 +11,25 @@ namespace ServerAppHelpDesk.DataBase
 {
     public class DataStoreDbContext : DbContext
     {
+        public string _SqlConnectionString;
+
         public DbSet<Users> Users { get; set; }
         public DbSet<TypeUser> TypeUser { get; set; }
         public DbSet<Tickets> Tickets { get; set; }
         public DbSet<TypeTicket> TypeTicket { get; set; }
 
-        public DataStoreDbContext()
+        
+
+        public DataStoreDbContext(string str)
         {
+            _SqlConnectionString = str;
             Database.EnsureCreated();
         }
-        
+
+        //todo: написать конфигурацию приложения.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-L93R2E4;Database=HDDataBase3;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(_SqlConnectionString);
             optionsBuilder.EnableSensitiveDataLogging();
         }
         

@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.btn_open_ticket = new System.Windows.Forms.Button();
+            this.dgv_my_tickets = new System.Windows.Forms.DataGridView();
             this.btn_createTicket = new System.Windows.Forms.Button();
             this.lb_typeTicket = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_my_tickets)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dataGridView2);
+            this.groupBox2.Controls.Add(this.btn_open_ticket);
+            this.groupBox2.Controls.Add(this.dgv_my_tickets);
             this.groupBox2.Location = new System.Drawing.Point(10, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(627, 426);
@@ -48,14 +50,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Мои заявки";
             // 
-            // dataGridView2
+            // btn_open_ticket
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 22);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(614, 398);
-            this.dataGridView2.TabIndex = 2;
+            this.btn_open_ticket.Location = new System.Drawing.Point(430, 391);
+            this.btn_open_ticket.Name = "btn_open_ticket";
+            this.btn_open_ticket.Size = new System.Drawing.Size(191, 29);
+            this.btn_open_ticket.TabIndex = 3;
+            this.btn_open_ticket.Text = "Открыть заявку";
+            this.btn_open_ticket.UseVisualStyleBackColor = true;
+            this.btn_open_ticket.Click += new System.EventHandler(this.btn_open_ticket_Click);
+            // 
+            // dgv_my_tickets
+            // 
+            this.dgv_my_tickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_my_tickets.Location = new System.Drawing.Point(6, 22);
+            this.dgv_my_tickets.Name = "dgv_my_tickets";
+            this.dgv_my_tickets.RowTemplate.Height = 25;
+            this.dgv_my_tickets.Size = new System.Drawing.Size(614, 363);
+            this.dgv_my_tickets.TabIndex = 2;
             // 
             // btn_createTicket
             // 
@@ -95,9 +107,10 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Name = "ClientForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Подача заявки";
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_my_tickets)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -106,9 +119,10 @@
         #endregion
 
         private GroupBox groupBox2;
-        private DataGridView dataGridView2;
+        private DataGridView dgv_my_tickets;
         private Button btn_createTicket;
         private ListBox lb_typeTicket;
         private GroupBox groupBox3;
+        private Button btn_open_ticket;
     }
 }

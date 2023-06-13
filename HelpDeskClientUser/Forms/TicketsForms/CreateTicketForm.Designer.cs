@@ -128,6 +128,7 @@
             this.Controls.Add(this.btn_send);
             this.Controls.Add(this.groupBox1);
             this.Name = "CreateTicketForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Создание заявки";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

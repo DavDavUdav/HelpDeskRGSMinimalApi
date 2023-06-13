@@ -1,4 +1,5 @@
 ﻿using ClientAppHelpDesk.Models;
+using HelpDeskClientUser.Forms.TicketsForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +33,7 @@ namespace HelpDeskClientUser.Forms
 
         }
 
-        private void btn_open_Click(object sender, EventArgs e)
+        private async void btn_open_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -40,6 +41,24 @@ namespace HelpDeskClientUser.Forms
             }
 
 
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                var get_id_ticket = dataGridView1.CurrentRow.Cells["Id"].Value;
+                Tickets currentTicket;
+
+                var id = await AccessingToApi.GetUserTicketsByIdAsync((int)get_id_ticket);
+
+                CheckTicketForm userCheckTicketForm = new CheckTicketForm(id);
+
+                userCheckTicketForm.ShowDialog();
+                this.Visible = true;
+            }
+        }
+
+        private async void btn_update_Click(object sender, EventArgs e)
+        {
+            var tickets = await AccessingToApi.GetActualTicketsAsync();
+            dataGridView1.DataSource= tickets;
         }
     }
 }
